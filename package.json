@@ -1,0 +1,26 @@
+{
+  "name": "apil-sin-frontend-preview",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Completely separate, frontend-only Apil Sin preview with synthetic browser-local data.",
+  "packageManager": "pnpm@11.18.0",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "build": "pnpm --filter @muhami/shared build && pnpm --filter @muhami/web build",
+    "dev": "pnpm --filter @muhami/web dev",
+    "start": "pnpm --filter @muhami/web start",
+    "typecheck": "pnpm --filter @muhami/shared build && pnpm --filter @muhami/web typecheck",
+    "test": "pnpm --filter @muhami/web test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "@next/eslint-plugin-next": "15.5.25",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "typescript-eslint": "^8.20.0",
+    "typescript": "^5.7.3"
+  }
+}

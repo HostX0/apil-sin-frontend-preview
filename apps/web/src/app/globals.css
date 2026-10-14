@@ -1,0 +1,98 @@
+@import '@muhami/ui/styles.css';
+
+/* Platform identity is scoped to the workspace; the company's public website keeps its own identity. */
+html[data-product='devshub'] {
+  --color-canvas: 248 250 252;
+  --color-surface: 255 255 255;
+  --color-surface-raised: 255 255 255;
+  --color-surface-sunken: 241 243 249;
+  --color-ink: 10 10 11;
+  --color-ink-muted: 77 87 106;
+  --color-ink-subtle: 89 102 122;
+  --color-ink-inverse: 248 250 252;
+  --color-line: 226 230 240;
+  --color-line-strong: 113 127 149;
+  --color-brand: 91 94 232;
+  --color-brand-hover: 77 80 206;
+  --color-brand-subtle: 238 238 255;
+  --color-brand-subtle-hover: 228 229 255;
+  --color-brand-ink: 255 255 255;
+  --color-brand-solid: 10 10 11;
+  --color-brand-solid-ink: 248 250 252;
+  --color-scrim: 10 10 11;
+  --color-illustration: 242 243 251;
+  --color-accent: 16 185 129;
+  --color-accent-ink: 10 10 11;
+  --color-shadow: 10 10 11;
+}
+
+html[data-product='devshub'][data-theme='dark'] {
+  --color-canvas: 10 10 11;
+  --color-surface: 20 21 27;
+  --color-surface-raised: 28 30 39;
+  --color-surface-sunken: 14 15 20;
+  --color-ink: 248 250 252;
+  --color-ink-muted: 199 207 222;
+  --color-ink-subtle: 159 172 193;
+  --color-ink-inverse: 10 10 11;
+  --color-line: 47 51 65;
+  --color-line-strong: 113 127 149;
+  --color-brand: 167 165 255;
+  --color-brand-hover: 188 185 255;
+  --color-brand-subtle: 37 36 69;
+  --color-brand-subtle-hover: 47 45 85;
+  --color-brand-ink: 16 15 37;
+  --color-illustration: 20 21 32;
+  --color-accent: 52 211 153;
+  --color-accent-ink: 10 10 11;
+}
+
+html[data-product='devshub'] body,
+html[data-product='devshub'] .font-display {
+  font-family: var(--font-product), var(--font-arabic), 'Segoe UI', sans-serif;
+}
+
+html[data-product='devshub'] input[type='tel'],
+html[data-product='devshub'] input[type='number'],
+html[data-product='devshub'] input[type='email'],
+html[data-product='devshub'] input[type='url'],
+html[data-product='devshub'] .ltr-numerals {
+  text-align: left;
+}
+
+/* Only functional transitions; application surfaces are flat and matte. */
+.landing-hero-overlay {
+  background: rgb(var(--color-landing-navy) / 0.88);
+}
+
+.dashboard-progress-ring {
+  transition: stroke-dasharray 250ms ease-out;
+}
+
+progress {
+  appearance: none;
+  border: 0;
+  background: rgb(var(--color-surface-sunken));
+  color: rgb(var(--color-success));
+  overflow: hidden;
+}
+
+progress::-webkit-progress-bar {
+  background: rgb(var(--color-surface-sunken));
+}
+
+progress::-webkit-progress-value {
+  background: rgb(var(--color-success));
+  border-radius: inherit;
+}
+
+progress::-moz-progress-bar {
+  background: rgb(var(--color-success));
+  border-radius: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-progress-ring {
+    transition: none;
+  }
+}

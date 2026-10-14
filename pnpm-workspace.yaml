@@ -1,0 +1,15 @@
+packages:
+  - 'apps/web'
+  - 'packages/shared'
+  - 'packages/ui'
+
+overrides:
+  deepmerge-ts: 8.0.2
+  postcss: 8.5.26
+  qs: 6.16.0
+  sharp: 0.35.4
+
+allowBuilds:
+  esbuild: true
+  sharp: true
+  '@scarf/scarf': false

@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Design tokens.
+ *
+ * Every colour in the product resolves through one of these variables. Dark mode
+ * swaps the values; no component knows which theme is active.
+ *
+ * Values are space-separated RGB channels so Tailwind's `<alpha-value>` works.
+ */
+@layer base {
+  :root,
+  [data-theme='light'] {
+    color-scheme: light;
+
+    /* Quiet, warm surfaces and readable neutral text. */
+    --color-canvas: 246 248 245;
+    --color-surface: 255 255 255;
+    --color-surface-raised: 255 255 255;
+    --color-surface-sunken: 239 243 238;
+    --color-ink: 31 44 39;
+    --color-ink-muted: 82 98 90;
+    --color-ink-subtle: 97 112 103;
+    --color-ink-inverse: 255 255 255;
+    --color-line: 221 229 223;
+    --color-line-strong: 124 141 129;
+
+    /* Forest controls, mint accents. Each filled control has its own ink. */
+    --color-brand: 34 96 75;
+    --color-brand-hover: 25 77 59;
+    --color-brand-subtle: 231 242 234;
+    --color-brand-subtle-hover: 216 233 221;
+    --color-brand-ink: 255 255 255;
+    --color-brand-solid: 21 63 50;
+    --color-brand-solid-ink: 255 255 255;
+    --color-scrim: 16 32 25;
+    --color-illustration: 243 247 244;
+    --color-accent: 221 183 89;
+    --color-accent-ink: 35 48 39;
+
+    /* Stable public identity. Legacy aliases remain green during migration. */
+    --color-landing-navy: 21 63 50;
+    --color-landing-navy-soft: 34 96 75;
+    --color-landing-mint: 196 225 208;
+    --color-landing-brass: 34 96 75;
+    --color-landing-gold: 131 201 170;
+    --color-landing-gold-soft: 196 225 208;
+
+    /* Status colours carry meaning, independently from the brand. */
+    --color-success: 34 104 75;
+    --color-success-subtle: 232 243 235;
+    --color-warning: 155 79 35;
+    --color-warning-subtle: 249 237 228;
+    --color-danger: 179 54 66;
+    --color-danger-hover: 152 43 53;
+    --color-danger-ink: 255 255 255;
+    --color-danger-subtle: 252 236 238;
+    --color-info: 44 97 149;
+    --color-info-subtle: 237 243 250;
+
+    /* Calendar contract: hearing, appointment, deadline, reminder, urgent. */
+    --color-event-blue: 50 107 161;
+    --color-event-green: 40 114 78;
+    --color-event-orange: 142 75 32;
+    --color-event-purple: 120 86 168;
+    --color-event-red: 179 54 66;
+    --color-shadow: 24 40 31;
+  }
+
+  [data-theme='dark'] {
+    color-scheme: dark;
+
+    --color-canvas: 17 26 23;
+    --color-surface: 24 36 30;
+    --color-surface-raised: 32 49 40;
+    --color-surface-sunken: 16 26 21;
+    --color-ink: 237 243 238;
+    --color-ink-muted: 188 202 192;
+    --color-ink-subtle: 156 171 159;
+    --color-ink-inverse: 17 26 23;
+    --color-line: 48 71 58;
+    --color-line-strong: 111 139 122;
+
+    --color-brand: 131 201 170;
+    --color-brand-hover: 159 217 190;
+    --color-brand-subtle: 28 58 45;
+    --color-brand-subtle-hover: 38 75 59;
+    --color-brand-ink: 20 45 34;
+
+    --color-success: 135 203 165;
+    --color-success-subtle: 26 56 42;
+    --color-warning: 238 177 139;
+    --color-warning-subtle: 65 43 30;
+    --color-danger: 241 163 170;
+    --color-danger-hover: 245 184 190;
+    --color-danger-ink: 56 19 26;
+    --color-danger-subtle: 64 38 43;
+    --color-info: 162 199 237;
+    --color-info-subtle: 32 50 72;
+
+    --color-event-blue: 149 191 231;
+    --color-event-green: 131 201 170;
+    --color-event-orange: 235 170 127;
+    --color-event-purple: 187 168 220;
+    --color-event-red: 241 163 170;
+    --color-shadow: 0 0 0;
+  }
+
+  * {
+    @apply border-line;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    background: rgb(var(--color-canvas));
+  }
+
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+    font-feature-settings: 'kern' 1;
+    overflow-x: hidden;
+    min-height: 100dvh;
+  }
+
+  ::selection {
+    background: rgb(var(--color-brand) / 0.18);
+    color: rgb(var(--color-ink));
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand ring-offset-2 ring-offset-canvas;
+  }
+
+  input[type='tel'],
+  input[type='number'],
+  input[type='email'],
+  input[type='url'],
+  .ltr-numerals {
+    direction: ltr;
+    text-align: right;
+  }
+
+  [dir='rtl'] .ltr-numerals {
+    text-align: right;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .card-surface {
+    @apply rounded-xl border border-line bg-surface shadow-none;
+  }
+
+  /* Existing surfaces share an opaque, flat treatment. */
+  .premium-surface {
+    @apply relative overflow-hidden rounded-2xl border border-line bg-surface shadow-none;
+  }
+
+  .glass-surface {
+    @apply border border-line bg-surface shadow-none;
+  }
+
+  .interactive-lift {
+    @apply transition-colors duration-150;
+  }
+
+  .soft-grid {
+    background-image: none;
+  }
+
+  .page-title {
+    @apply font-display text-xl font-bold tracking-tight text-ink lg:text-2xl;
+  }
+
+  .section-label {
+    @apply text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-ink-subtle;
+  }
+
+  .tap-target {
+    @apply min-h-11 min-w-11;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
