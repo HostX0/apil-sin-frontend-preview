@@ -49,7 +49,7 @@ html[data-product='devshub'][data-theme='dark'] {
 
 html[data-product='devshub'] body,
 html[data-product='devshub'] .font-display {
-  font-family: var(--font-product), var(--font-arabic), 'Segoe UI', sans-serif;
+  font-family: var(--font-product), 'Segoe UI', sans-serif;
 }
 
 html[data-product='devshub'] input[type='tel'],
