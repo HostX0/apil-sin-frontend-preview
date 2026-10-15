@@ -1,47 +1,94 @@
-# Apil Sin Frontend Preview
+<p align="center">
+  <img src="apps/web/public/brand/mark-ink.svg" width="64" alt="DevsHub" />
+</p>
 
-An independent, editable Next.js frontend preview with the DevsHub interface and synthetic sample records. This repository has its own history and deployment. It contains no production server, database, upload storage, credentials or customer records.
+# DevsHub Legal Office Management
 
-The preview opens directly at `/dashboard`. The banner identifies it as a preview. All client, case, calendar, finance and message records are examples. Changes stay in browser memory and reset when the page reloads. Do not enter real personal or client information.
+**One workspace for cases, clients, hearings, documents, finance and communication.**
 
-## Run locally
+[**Explore the live preview**](https://apil-sin-frontend-preview.vercel.app) · [**Contact the project owner**](https://github.com/HostX0)
 
-Requires Node.js 22.12 or newer and pnpm 11.
+> **Interactive frontend preview only.** This public demo uses synthetic sample records and is completely separate from the live product. It contains no production backend, customer database or real account access. To obtain the complete system or discuss a customized version, [contact the account owner](https://github.com/HostX0).
 
-```bash
-pnpm install --frozen-lockfile
-pnpm build
-pnpm start
-```
+![DevsHub legal office dashboard with today's schedule, quick actions and office overview](docs/screenshots/dashboard.jpg)
 
-Checks: `pnpm test` and `pnpm typecheck`.
+_Start the day with the next hearing, completion progress, active cases and quick shortcuts for new work._
 
-Open `http://localhost:3000`. For development, run `pnpm --filter @muhami/shared build` once, then `pnpm dev`.
+## The problem it solves
 
-## Deploy on Vercel
+Legal offices often track clients, court dates, case papers, fees and conversations in separate places. Finding the latest case status or the correct balance can mean searching through folders, spreadsheets and messages.
 
-Create or import a **separate** Vercel project from this repository with:
+DevsHub brings that work into connected client and case files. Staff can follow a matter from registration through hearings, documents, payments and later follow-up without losing its context.
 
-- Root Directory: `apps/web`
-- Framework: Next.js
-- Build Command: `pnpm --filter @muhami/shared build && pnpm build`
-- Install Command: `pnpm install --frozen-lockfile`
-- Output Directory: `.next`
+## Explore the product
 
-These commands are also recorded in `apps/web/vercel.json`. No environment variables, API credentials or production domains are required. Do not reuse the production project's settings or domains.
+| Area                  | What the workspace brings together                                                                   |
+| --------------------- | ---------------------------------------------------------------------------------------------------- |
+| Daily dashboard       | Upcoming work, office activity, completion progress and quick entry shortcuts.                       |
+| Clients and lawyers   | Searchable profiles, contact details, assigned lawyers and connected case history.                   |
+| Case management       | Case numbers, courts, parties, priorities, powers of attorney, hearings and status history.          |
+| Calendar and tasks    | Day, week and month views for appointments, hearings, deadlines and assigned tasks.                  |
+| Transactions          | Department and authority work linked to the relevant client and responsible lawyer.                  |
+| Finance               | Agreed fees, payments, outstanding balances, expenses and case, transaction or independent accounts. |
+| Documents             | A searchable document library and document sections inside the relevant files.                       |
+| Communication         | Recipient selection, sample message history, welcome designs and automatic-message settings.         |
+| Office administration | Office profile, users, role permissions, follow-up lists, statistics and audit-history screens.      |
+| Everyday usability    | A responsive interface, light and dark themes, search, filters, favourites and contextual guidance.  |
 
-## Source structure
+## A closer look
 
-- `apps/web/src`: editable React pages, components and frontend logic.
-- `apps/web/src/lib/preview-api.js`: readable synthetic fixtures and an in-memory API, recovered from the already published standalone preview.
-- `apps/web/src/lib/api-client.ts`: preview-only adapter. It never makes an HTTP API request.
-- `packages/ui`: shared frontend components and styles.
-- `packages/shared`: frontend domain types, labels and validation schemas.
+### A complete case file
 
-The interface source is copied from the original frontend into a new repository; the backend and original Git history are excluded. The mock transport was restored from the existing preview so its sample workflows are preserved.
+![Sample case showing the court, parties, assigned lawyers and case sections](docs/screenshots/case-file.jpg)
 
-## Preview limits and isolation
+_Keep the case subject, court, parties and responsible lawyers together. Tabs lead to powers of attorney, hearings, documents, fees and status history._
 
-Authentication is simulated with a sample office manager; there is no real login service. Messaging, email delivery, push notifications, file uploads, signed downloads, archive exports and restore operations do not contact external services. Controls that need those services show a preview limitation instead. CRUD demonstrations affect sample memory only.
+### Hearing follow-up
 
-The browser's Content Security Policy permits connections only to the preview origin. The preview has no API proxy, production API fallback, service worker registration or production environment configuration. Search engines are instructed not to index it. Deploy it independently from the production application.
+![Upcoming and past hearings inside a sample case](docs/screenshots/hearings.jpg)
+
+_See scheduled hearings and past outcomes in the same case file, including postponements and the next hearing date._
+
+### Connected client profiles
+
+![Synthetic client profile with contact details and linked case history tabs](docs/screenshots/client-profile.jpg)
+
+_Open one profile for the client's details, cases, documents, fees and timeline. Sample records make the journey easy to explore._
+
+### Clear calendar planning
+
+![Weekly calendar for legal appointments, hearings and deadlines](docs/screenshots/calendar.jpg)
+
+_Switch between day, week and month views and follow commitments in Baghdad time._
+
+### Fees and payments in context
+
+![Finance workspace with agreed fees, received payments and outstanding balances](docs/screenshots/finance.jpg)
+
+_Review collection progress and open the financial file for a case, transaction or independent service._
+
+### Communication with a consistent identity
+
+![Automatic-message settings with DevsHub welcome artwork](docs/screenshots/communication.jpg)
+
+_Explore message templates, recipient fields and DevsHub welcome designs. This preview demonstrates the settings without sending messages to anyone._
+
+## Try the demo
+
+1. Open the [live preview](https://apil-sin-frontend-preview.vercel.app). It starts with a sample office manager; no registration is needed.
+2. Review the dashboard, then open a sample case and explore its tabs.
+3. Visit the related client profile, calendar, tasks and finance workspace.
+4. Add a fictional client or edit a sample record to try the local interactions.
+5. Explore communication and office-administration screens. Reload the page to restore the original sample records.
+
+Use fictional information only. Sample changes stay in the current browser session's memory and reset on a full reload. Visual preferences may remain on that browser.
+
+## What this preview includes
+
+This is an interactive product demonstration with the main workspace screens, synthetic records, navigation, search, filters, forms and local sample interactions. Its separate repository and demo deployment have no connection to the live application's records or services.
+
+Real sign-in and account security, file uploads and downloads, PDF generation, messaging and email delivery, browser push, backup exports and restore operations are outside this frontend demo. Controls that require those services display a preview limitation. No messages are sent and no production data is read or changed.
+
+## Get the complete system
+
+For the complete application, a guided demonstration, branding or a version tailored to your office, **[contact the project owner](https://github.com/HostX0)**.

@@ -839,16 +839,8 @@ let feeAgreements = [
     enabled: 0 === t,
     welcomeImageEnabled: !0,
     version: 1,
-    welcomeImageId: null,
-    welcomeUpload:
-      0 === t
-        ? {
-            objectKey: 'reference/welcome/saved/company-welcome.png',
-            fileName: 'company-welcome.png',
-            mimeType: 'image/png',
-            sizeBytes: 1412444,
-          }
-        : null,
+    welcomeImageId: 0 === t ? 'welcome-1' : null,
+    welcomeUpload: null,
   })),
   whatsappMessages = [
     {
@@ -975,9 +967,14 @@ let feeAgreements = [
     },
   ],
   idempotencyResults = new Map();
-function clientFor(e) {
-  var t;
-  return null != (t = clients.find((t) => t.id === e)) ? t : clients[0];
+function clientFor(id) {
+  const client = clients.find((candidate) => candidate.id === id) ?? clients[0];
+  const linkedCases = cases.filter((record) => record.clientId === client.id);
+  client.caseCount = linkedCases.length;
+  client.activeCaseCount = linkedCases.filter(
+    (record) => !['CLOSED', 'ARCHIVED'].includes(record.status),
+  ).length;
+  return client;
 }
 function caseFor(e) {
   var t;
@@ -1253,12 +1250,14 @@ function previewRequest(e) {
             }));
         if ('/clients' === e)
           return paginate(
-            clients.filter(
-              (e) =>
-                matchesQuery(e, t.search) &&
-                (!t.kind || e.kind === t.kind) &&
-                (!isTrue(t.isFavorite) || e.isFavorite),
-            ),
+            clients
+              .map((client) => clientFor(client.id))
+              .filter(
+                (e) =>
+                  matchesQuery(e, t.search) &&
+                  (!t.kind || e.kind === t.kind) &&
+                  (!isTrue(t.isFavorite) || e.isFavorite),
+              ),
             t,
           );
         if ('clients' === a[0])
@@ -1854,12 +1853,24 @@ function previewRequest(e) {
     if ('clients' === eW[0]) {
       let n =
         '/clients' === e
-          ? null != (c = clients.find((e) => e.id === fixtureIds.case))
-            ? c
-            : {
-                ...clone(clients[0]),
-                id: fixtureIds.case,
-              }
+          ? {
+              id: createId(),
+              kind: 'INDIVIDUAL',
+              fullName: '',
+              mobile: '',
+              nationalId: null,
+              activeCaseCount: 0,
+              caseCount: 0,
+              isFavorite: false,
+              createdAt: timestamp(),
+              updatedAt: timestamp(),
+              address: null,
+              phoneSecondary: null,
+              email: null,
+              notes: null,
+              tags: [],
+              version: 0,
+            }
           : clientFor(eQ);
       return 'DELETE' === t
         ? (clients.splice(clients.indexOf(n), 1),
@@ -1876,21 +1887,42 @@ function previewRequest(e) {
     if ('cases' === eW[0]) {
       let n =
         '/cases' === e
-          ? null != (m = cases.find((e) => e.id === fixtureIds.client))
-            ? m
-            : {
-                ...clone(cases[0]),
-                id: fixtureIds.client,
-                status: 'NOTIFICATION',
-                powersOfAttorney: [],
-                statusHistory: [],
-                counts: {
-                  hearings: 0,
-                  documents: 0,
-                  tasks: 0,
-                  notes: 0,
+          ? {
+              id: createId(),
+              status: 'NOTIFICATION',
+              priority: 'NORMAL',
+              isFavorite: false,
+              openedAt: todayKey,
+              claimValue: null,
+              judgeName: null,
+              chamber: null,
+              closedAt: null,
+              archivedAt: null,
+              nextHearingAt: null,
+              version: 0,
+              parties: [
+                {
+                  id: createId(),
+                  side: 'CLIENT',
+                  role: a.clientRole,
+                  name: '',
+                  counselName: null,
+                  address: null,
+                  phone: null,
+                  clientId: a.clientId,
                 },
-              }
+              ],
+              assignedLawyers: [],
+              powersOfAttorney: [],
+              statusHistory: [],
+              tags: [],
+              compliance: {
+                missingFeeAgreement: true,
+                missingCertifiedPoa: true,
+                outstandingBalance: '0',
+              },
+              counts: { hearings: 0, documents: 0, tasks: 0, notes: 0 },
+            }
           : caseFor(eQ);
       if ('powers-of-attorney' === eW[2]) {
         if ('DELETE' === t) n.powersOfAttorney = n.powersOfAttorney.filter((e) => e.id !== eW[3]);
