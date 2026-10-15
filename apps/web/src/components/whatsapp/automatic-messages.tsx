@@ -596,7 +596,7 @@ function AutomaticMessageCard({
                     >
                       <Image
                         src={image.src}
-                        alt={`Apil Sin welcome image — ${image.label}`}
+                        alt={`DevsHub welcome image — ${image.label}`}
                         width={400}
                         height={400}
                         sizes="(max-width: 640px) 30vw, 180px"

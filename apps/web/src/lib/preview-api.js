@@ -1545,7 +1545,7 @@ function previewRequest(e) {
         if ('/whatsapp/automations' === e) return automationTemplates;
         if ('/whatsapp/automations/client.created/image' === e)
           return {
-            url: '/images/welcome/devshub-welcome-1.png',
+            url: '/images/welcome/devshub-welcome-1.svg',
             expiresIn: 3600,
           };
         if ('/whatsapp/messages' === e)

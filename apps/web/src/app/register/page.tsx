@@ -79,7 +79,7 @@ export default function RegisterPage() {
       <div className="w-full max-w-sm space-y-6">
         <div className="space-y-2 text-center">
           <Image
-            src="/icons/icon-192.png"
+            src="/icons/devshub-192.png"
             alt=""
             width={56}
             height={56}

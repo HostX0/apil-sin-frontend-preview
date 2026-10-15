@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { requiredText, uuidSchema } from './common';
 
 export const WHATSAPP_WELCOME_MESSAGE =
-  'نشكركم لاختياركم شركة Apil Sin للمحاماة والاستشارات القانونية لتمثيلكم وحماية حقوقكم ومصالحكم';
+  'Welcome to DevsHub. Thank you for choosing our legal office. We are here to help you follow your case.';
 
 export const WHATSAPP_WELCOME_IMAGE_IDS = ['welcome-1', 'welcome-2', 'welcome-3'] as const;
 export type WhatsAppWelcomeImageId = (typeof WHATSAPP_WELCOME_IMAGE_IDS)[number];
@@ -12,9 +12,9 @@ export const WHATSAPP_WELCOME_IMAGES: ReadonlyArray<{
   label: string;
   src: string;
 }> = [
-  { id: 'welcome-1', label: 'الأخضر الأنيق', src: '/images/welcome/apil-sin-welcome-1.png' },
-  { id: 'welcome-2', label: 'العاجي الهادئ', src: '/images/welcome/apil-sin-welcome-2.png' },
-  { id: 'welcome-3', label: 'الهندسي', src: '/images/welcome/apil-sin-welcome-3.png' },
+  { id: 'welcome-1', label: 'Midnight', src: '/images/welcome/devshub-welcome-1.svg' },
+  { id: 'welcome-2', label: 'Paper', src: '/images/welcome/devshub-welcome-2.svg' },
+  { id: 'welcome-3', label: 'Indigo', src: '/images/welcome/devshub-welcome-3.svg' },
 ];
 export const whatsAppWelcomeImageIdSchema = z.enum(WHATSAPP_WELCOME_IMAGE_IDS);
 

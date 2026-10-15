@@ -226,7 +226,7 @@ export function ClientFormSheet({
                   <p className="whitespace-pre-wrap break-words text-xs leading-7 text-ink-muted">
                     {automaticMessagePreview(welcomeTemplate.body, {
                       اسم_المستلم: fullName.trim() || 'Client',
-                      اسم_الشركة: user?.officeName || 'Apil Sin',
+                      اسم_الشركة: user?.officeName || 'DevsHub',
                     })}
                   </p>
                 ) : (
